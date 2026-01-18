@@ -1,722 +1,505 @@
+
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Green Network - Protect Earth</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-
-        :root {
-            --primary: #2e7d32;
-            --secondary: #4caf50;
-            --accent: #8bc34a;
-            --light: #e8f5e9;
-            --dark: #1b5e20;
-            --text: #333333;
-            --white: #ffffff;
-        }
-
-        body {
-            background-color: var(--light);
-            color: var(--text);
-            line-height: 1.6;
-        }
-
-        header {
-            background: linear-gradient(to right, var(--primary), var(--secondary));
-            color: var(--white);
-            padding: 1rem 0;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-        }
-
-        .container {
-            width: 90%;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .nav-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-size: 1.8rem;
-            font-weight: 700;
-        }
-
-        .logo i {
-            font-size: 2rem;
-        }
-
-        nav ul {
-            display: flex;
-            list-style: none;
-        }
-
-        nav ul li {
-            margin-left: 2rem;
-        }
-
-        nav ul li a {
-            color: var(--white);
-            text-decoration: none;
-            font-weight: 500;
-            transition: all 0.3s ease;
-            padding: 0.5rem 0;
-            position: relative;
-        }
-
-        nav ul li a:hover {
-            color: var(--accent);
-        }
-
-        nav ul li a::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background-color: var(--accent);
-            transition: width 0.3s ease;
-        }
-
-        nav ul li a:hover::after {
-            width: 100%;
-        }
-
-        .hero {
-            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.4)), url('https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2073&q=80');
-            background-size: cover;
-            background-position: center;
-            height: 80vh;
-            display: flex;
-            align-items: center;
-            text-align: center;
-            color: var(--white);
-        }
-
-        .hero-content {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .hero h1 {
-            font-size: 3.5rem;
-            margin-bottom: 1rem;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-        }
-
-        .hero p {
-            font-size: 1.3rem;
-            margin-bottom: 2rem;
-        }
-
-        .btn {
-            display: inline-block;
-            background-color: var(--accent);
-            color: var(--white);
-            padding: 0.8rem 2rem;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            border: none;
-            cursor: pointer;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-
-        .btn:hover {
-            background-color: var(--primary);
-            transform: translateY(-3px);
-            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
-        }
-
-        section {
-            padding: 5rem 0;
-        }
-
-        .section-title {
-            text-align: center;
-            margin-bottom: 3rem;
-        }
-
-        .section-title h2 {
-            font-size: 2.5rem;
-            color: var(--primary);
-            margin-bottom: 1rem;
-            position: relative;
-            display: inline-block;
-        }
-
-        .section-title h2::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 4px;
-            background-color: var(--accent);
-            border-radius: 2px;
-        }
-
-        .section-title p {
-            color: var(--text);
-            max-width: 700px;
-            margin: 0 auto;
-        }
-
-        .about-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 3rem;
-            align-items: center;
-        }
-
-        .about-img {
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-        }
-
-        .about-img img {
-            width: 100%;
-            height: auto;
-            display: block;
-            transition: transform 0.5s ease;
-        }
-
-        .about-img:hover img {
-            transform: scale(1.05);
-        }
-
-        .about-text h3 {
-            font-size: 1.8rem;
-            margin-bottom: 1.5rem;
-            color: var(--dark);
-        }
-
-        .about-text p {
-            margin-bottom: 1.5rem;
-        }
-
-        .stats {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .stat-item {
-            text-align: center;
-            padding: 2rem 1rem;
-            background-color: var(--white);
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            transition: transform 0.3s ease;
-        }
-
-        .stat-item:hover {
-            transform: translateY(-10px);
-        }
-
-        .stat-item i {
-            font-size: 2.5rem;
-            color: var(--primary);
-            margin-bottom: 1rem;
-        }
-
-        .stat-item h3 {
-            font-size: 2.5rem;
-            color: var(--dark);
-            margin-bottom: 0.5rem;
-        }
-
-        .stat-item p {
-            color: var(--text);
-        }
-
-        .initiatives {
-            background-color: var(--white);
-        }
-
-        .initiatives-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2rem;
-        }
-
-        .initiative-card {
-            background-color: var(--light);
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            transition: transform 0.3s ease;
-        }
-
-        .initiative-card:hover {
-            transform: translateY(-10px);
-        }
-
-        .initiative-img {
-            height: 200px;
-            overflow: hidden;
-        }
-
-        .initiative-img img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s ease;
-        }
-
-        .initiative-card:hover .initiative-img img {
-            transform: scale(1.1);
-        }
-
-        .initiative-content {
-            padding: 1.5rem;
-        }
-
-        .initiative-content h3 {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            color: var(--dark);
-        }
-
-        .initiative-content p {
-            margin-bottom: 1.5rem;
-        }
-
-        .cta {
-            background: linear-gradient(to right, var(--primary), var(--secondary));
-            color: var(--white);
-            text-align: center;
-            padding: 5rem 0;
-        }
-
-        .cta h2 {
-            font-size: 2.5rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .cta p {
-            font-size: 1.2rem;
-            margin-bottom: 2rem;
-            max-width: 700px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .cta .btn {
-            background-color: var(--white);
-            color: var(--primary);
-        }
-
-        .cta .btn:hover {
-            background-color: var(--accent);
-            color: var(--white);
-        }
-
-        footer {
-            background-color: var(--dark);
-            color: var(--white);
-            padding: 3rem 0 1rem;
-        }
-
-        .footer-content {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 2rem;
-            margin-bottom: 2rem;
-        }
-
-        .footer-column h3 {
-            font-size: 1.3rem;
-            margin-bottom: 1.5rem;
-            position: relative;
-            padding-bottom: 10px;
-        }
-
-        .footer-column h3::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 40px;
-            height: 2px;
-            background-color: var(--accent);
-        }
-
-        .footer-column p {
-            margin-bottom: 1rem;
-        }
-
-        .footer-links {
-            list-style: none;
-        }
-
-        .footer-links li {
-            margin-bottom: 0.8rem;
-        }
-
-        .footer-links li a {
-            color: var(--light);
-            text-decoration: none;
-            transition: all 0.3s ease;
-        }
-
-        .footer-links li a:hover {
-            color: var(--accent);
-            padding-left: 5px;
-        }
-
-        .social-links {
-            display: flex;
-            gap: 1rem;
-        }
-
-        .social-links a {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 40px;
-            height: 40px;
-            background-color: rgba(255, 255, 255, 0.1);
-            border-radius: 50%;
-            color: var(--white);
-            text-decoration: none;
-            transition: all 0.3s ease;
-        }
-
-        .social-links a:hover {
-            background-color: var(--accent);
-            transform: translateY(-5px);
-        }
-
-        .copyright {
-            text-align: center;
-            padding-top: 2rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .mobile-menu {
-            display: none;
-            font-size: 1.5rem;
-            cursor: pointer;
-        }
-
-        @media (max-width: 992px) {
-            .about-content {
-                grid-template-columns: 1fr;
-            }
-            
-            .initiatives-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            
-            .footer-content {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            
-            .stats {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
-        @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-            
-            .hero p {
-                font-size: 1.1rem;
-            }
-            
-            nav ul {
-                display: none;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                width: 100%;
-                background-color: var(--primary);
-                flex-direction: column;
-                padding: 1rem 0;
-                text-align: center;
-                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
-            }
-            
-            nav ul.active {
-                display: flex;
-            }
-            
-            nav ul li {
-                margin: 0;
-                padding: 0.8rem 0;
-            }
-            
-            .mobile-menu {
-                display: block;
-            }
-            
-            .initiatives-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .footer-content {
-                grid-template-columns: 1fr;
-            }
-            
-            .stats {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        /* Animation for stats counter */
-        .counter {
-            transition: all 0.5s ease;
-        }
-    </style>
-</head>
-<body>
-    <!-- Header -->
-    <header>
-        <div class="container nav-container">
-            <div class="logo">
-                <i class="fas fa-seedling"></i>
-                <span>Green Network</span>
-            </div>
-            <nav>
-                <div class="mobile-menu">
-                    <i class="fas fa-bars"></i>
-                </div>
-                <ul>
-                    <li><a href="#home">Home</a></li>
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#initiatives">Initiatives</a></li>
-                    <li><a href="#get-involved">Get Involved</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
-
-    <!-- Hero Section -->
-    <section class="hero" id="home">
-        <div class="container hero-content">
-            <h1>Protect Our Planet, Preserve Our Future</h1>
-            <p>Join the global movement to create a sustainable world through conservation, education, and community action.</p>
-            <a href="#get-involved" class="btn">Join Our Network</a>
-        </div>
-    </section>
-
-    <!-- About Section -->
-    <section id="about">
-        <div class="container">
-            <div class="section-title">
-                <h2>About Green Network</h2>
-                <p>We are a global community dedicated to environmental protection and sustainable development.</p>
-            </div>
-            <div class="about-content">
-                <div class="about-img">
-                    <img src="https://images.unsplash.com/photo-1507591064344-4c6ce005b128?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Team planting trees">
-                </div>
-                <div class="about-text">
-                    <h3>Our Mission</h3>
-                    <p>Green Network is committed to creating a sustainable future by protecting natural ecosystems, promoting renewable energy, and empowering communities to take environmental action.</p>
-                    <p>Founded in 2010, we've grown from a small grassroots organization to an international network with over 50,000 members across 120 countries.</p>
-                    <p>Our approach combines scientific research, community engagement, and policy advocacy to address the most pressing environmental challenges of our time.</p>
-                    <a href="#" class="btn">Learn More</a>
-                </div>
-            </div>
-            <div class="stats">
-                <div class="stat-item">
-                    <i class="fas fa-tree"></i>
-                    <h3 class="counter" data-target="2500000">0</h3>
-                    <p>Trees Planted</p>
-                </div>
-                <div class="stat-item">
-                    <i class="fas fa-users"></i>
-                    <h3 class="counter" data-target="50000">0</h3>
-                    <p>Active Members</p>
-                </div>
-                <div class="stat-item">
-                    <i class="fas fa-globe-americas"></i>
-                    <h3 class="counter" data-target="120">0</h3>
-                    <p>Countries Reached</p>
-                </div>
-                <div class="stat-item">
-                    <i class="fas fa-recycle"></i>
-                    <h3 class="counter" data-target="1500">0</h3>
-                    <p>Cleanup Projects</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Initiatives Section -->
-    <section class="initiatives" id="initiatives">
-        <div class="container">
-            <div class="section-title">
-                <h2>Our Initiatives</h2>
-                <p>Discover the key programs and projects we're implementing to protect our planet.</p>
-            </div>
-            <div class="initiatives-grid">
-                <div class="initiative-card">
-                    <div class="initiative-img">
-                        <img src="https://dialogue.earth/content/uploads/2021/04/lessons-from-the-rush-to-reforest-china-dialogue-2400x1599.jpg" alt="Reforestation">
-                    </div>
-                    <div class="initiative-content">
-                        <h3>Global Reforestation</h3>
-                        <p>Planting millions of trees worldwide to restore ecosystems, combat climate change, and protect biodiversity.</p>
-                        <a href="#" class="btn">Learn More</a>
-                    </div>
-                </div>
-                <div class="initiative-card">
-                    <div class="initiative-img">
-                        <img src="https://images.unsplash.com/photo-1621451537084-482c73073a0f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80" alt="Ocean Conservation">
-                    </div>
-                    <div class="initiative-content">
-                        <h3>Ocean Conservation</h3>
-                        <p>Protecting marine ecosystems, reducing plastic pollution, and promoting sustainable fishing practices.</p>
-                        <a href="#" class="btn">Learn More</a>
-                    </div>
-                </div>
-                <div class="initiative-card">
-                    <div class="initiative-img">
-                        <img src="https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2072&q=80" alt="Renewable Energy">
-                    </div>
-                    <div class="initiative-content">
-                        <h3>Renewable Energy</h3>
-                        <p>Promoting solar, wind, and other clean energy sources to reduce dependence on fossil fuels.</p>
-                        <a href="#" class="btn">Learn More</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- CTA Section -->
-    <section class="cta" id="get-involved">
-        <div class="container">
-            <h2>Join Our Global Movement</h2>
-            <p>Together, we can create a sustainable future for generations to come. Every action counts, no matter how small.</p>
-            <a href="#" class="btn">Become a Member</a>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer id="contact">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-column">
-                    <h3>Green Network</h3>
-                    <p>We are dedicated to protecting our planet through collaborative action, education, and sustainable solutions.</p>
-                    <div class="social-links">
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                    </div>
-                </div>
-                <div class="footer-column">
-                    <h3>Quick Links</h3>
-                    <ul class="footer-links">
-                        <li><a href="#home">Home</a></li>
-                        <li><a href="#about">About Us</a></li>
-                        <li><a href="#initiatives">Initiatives</a></li>
-                        <li><a href="#get-involved">Get Involved</a></li>
-                        <li><a href="#contact">Contact</a></li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h3>Our Programs</h3>
-                    <ul class="footer-links">
-                        <li><a href="#">Reforestation</a></li>
-                        <li><a href="#">Ocean Cleanup</a></li>
-                        <li><a href="#">Wildlife Protection</a></li>
-                        <li><a href="#">Climate Education</a></li>
-                        <li><a href="#">Sustainable Agriculture</a></li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h3>Contact Us</h3>
-                    <p><i class="fas fa-map-marker-alt"></i> Copper Creek Drive, New York</p>
-                    <p><i class="fas fa-phone"></i> +1 (312) 171-0771</p>
-                    <p><i class="fas fa-envelope"></i> support@greennetwork.org</p>
-                </div>
-            </div>
-            <div class="copyright">
-                <p>&copy; 2025 Green Network. All rights reserved.</p>
-            </div>
-        </div>
-    </footer>
-
-    <script>
-        // Mobile Menu Toggle
-        document.querySelector('.mobile-menu').addEventListener('click', function() {
-            document.querySelector('nav ul').classList.toggle('active');
-        });
-
-        // Counter Animation
-        function animateCounters() {
-            const counters = document.querySelectorAll('.counter');
-            const speed = 200; // The lower the slower
-            
-            counters.forEach(counter => {
-                const target = +counter.getAttribute('data-target');
-                const count = +counter.innerText;
-                
-                const inc = target / speed;
-                
-                if(count < target) {
-                    counter.innerText = Math.ceil(count + inc);
-                    setTimeout(animateCounters, 1);
-                } else {
-                    counter.innerText = target;
-                }
-            });
-        }
-
-        // Initialize counters when page loads
-        window.addEventListener('load', animateCounters);
-
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                
-                const targetId = this.getAttribute('href');
-                if(targetId === '#') return;
-                
-                const targetElement = document.querySelector(targetId);
-                if(targetElement) {
-                    window.scrollTo({
-                        top: targetElement.offsetTop - 80,
-                        behavior: 'smooth'
-                    });
-                    
-                    document.querySelector('nav ul').classList.remove('active');
-                }
-            });
-        });
-    </script>
-</body>
-
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+		<title>3D元素周期表</title>
+
+		<script>
+			function fangdajing() {
+				var sc = document.creatElement('style');
+				sc.innerHTML="
+				
+				"
+			}
+		</script>
+		<script src="js/three.min.js"></script>
+		<script src="js/tween.min.js"></script>
+		<script src="js/TrackballControls.js"></script>
+		<script src="js/CSS3DRenderer.js"></script>
+
+		<style>
+			html,
+			body {
+				height: 100%;
+			}
+
+			body {
+				background-color: #000000;
+				margin: 0;
+				font-family: Helvetica, sans-serif;
+				;
+				overflow: hidden;
+			}
+
+			a {
+				color: #ffffff;
+			}
+
+			#info {
+				position: absolute;
+				width: 100%;
+				color: #ffffff;
+				padding: 5px;
+				font-family: Monospace;
+				font-size: 13px;
+				font-weight: bold;
+				text-align: center;
+				z-index: 1;
+			}
+
+			#menu {
+				position: absolute;
+				bottom: 20px;
+				width: 100%;
+				text-align: center;
+				font-family: verdana, Tahoma, Arial, Hei, "Microsoft Yahei", SimHei;
+			}
+
+			.element {
+				width: 120px;
+				height: 160px;
+				box-shadow: 0px 0px 12px rgba(0, 255, 255, 0.5);
+				border: 1px solid rgba(127, 255, 255, 0.25);
+				text-align: center;
+				cursor: default;
+			}
+
+
+			.element .number {
+				position: absolute;
+				top: 20px;
+				right: 20px;
+				font-size: 12px;
+				color: rgba(127, 255, 255, 0.75);
+			}
+
+			.element .symbol {
+				position: absolute;
+				top: 40px;
+				left: 0px;
+				right: 0px;
+				font-size: 60px;
+				font-weight: bold;
+				color: rgba(255, 255, 255, 0.75);
+				text-shadow: 0 0 10px rgba(0, 255, 255, 0.95);
+			}
+
+			.element .details {
+				position: absolute;
+				bottom: 15px;
+				left: 0px;
+				right: 0px;
+				font-size: 12px;
+				color: rgba(127, 255, 255, 0.75);
+			}
+
+			button {
+				color: rgba(127, 255, 255, 0.75);
+				background: transparent;
+				outline: 1px solid rgba(127, 255, 255, 0.75);
+				border: 0px;
+				padding: 5px 10px;
+				cursor: pointer;
+			}
+
+			button:hover {
+				background-color: rgba(0, 255, 255, 0.5);
+			}
+
+			button:active {
+				color: #000000;
+				background-color: rgba(0, 255, 255, 0.75);
+			}
+		</style>
+	</head>
+	<body>
+		<script src="js/three.min.js"></script>
+		<script src="js/tween.min.js"></script>
+		<script src="js/TrackballControls.js"></script>
+		<script src="js/CSS3DRenderer.js"></script>
+
+		<div id="container"></div>
+		<div id="info">3D-元素周期表</div>
+		<div id="menu">
+			<button id="table">表面</button>
+			<button id="sphere">球体</button>
+			<button id="helix">螺旋</button>
+			<button id="grid">网格</button>
+		</div>
+
+		<script>
+			//这里是定义table元素放入展示的内容,在后面再对table进行解析
+			var table = [
+				"H", "飞翔的企鹅", "1.00794", 1, 1,
+				"He", "Helium", "4.002602", 18, 1,
+				"Li", "Lithium", "#6.941", 1, 2,
+				"Be", "Beryllium", "9.012182", 2, 2,
+				"B", "Boron", "#10.811", 13, 2,
+				"C", "Carbon", "#12.0107", 14, 2,
+				"N", "Nitrogen", "#14.0067", 15, 2,
+				"O", "Oxygen", "#15.9994", 16, 2,
+				"F", "Fluorine", "18.9984032", 17, 2,
+				"Ne", "Neon", "#20.1797", 18, 2,
+				"Na", "Sodium", "22.98976...", 1, 3,
+				"Mg", "Magnesium", "#24.305", 2, 3,
+				"Al", "Aluminium", "26.9815386", 13, 3,
+				"Si", "Silicon", "#28.0855", 14, 3,
+				"P", "Phosphorus", "30.973762", 15, 3,
+				"S", "Sulfur", "#32.065", 16, 3,
+				"Cl", "Chlorine", "#35.453", 17, 3,
+				"Ar", "Argon", "#39.948", 18, 3,
+				"K", "Potassium", "#39.948", 1, 4,
+				"Ca", "Calcium", "#40.078", 2, 4,
+				"Sc", "Scandium", "44.955912", 3, 4,
+				"Ti", "Titanium", "#47.867", 4, 4,
+				"V", "Vanadium", "#50.9415", 5, 4,
+				"Cr", "Chromium", "#51.9961", 6, 4,
+				"Mn", "Manganese", "54.938045", 7, 4,
+				"Fe", "Iron", "#55.845", 8, 4,
+				"Co", "Cobalt", "58.933195", 9, 4,
+				"Ni", "Nickel", "#58.6934", 10, 4,
+				"Cu", "Copper", "#63.546", 11, 4,
+				"Zn", "Zinc", "#65.38", 12, 4,
+				"Ga", "Gallium", "#69.723", 13, 4,
+				"Ge", "Germanium", "#72.63", 14, 4,
+				"As", "Arsenic", "#74.9216", 15, 4,
+				"Se", "Selenium", "#78.96", 16, 4,
+				"Br", "Bromine", "#79.904", 17, 4,
+				"Kr", "Krypton", "#83.798", 18, 4,
+				"Rb", "Rubidium", "#85.4678", 1, 5,
+				"Sr", "Strontium", "#87.62", 2, 5,
+				"Y", "Yttrium", "88.90585", 3, 5,
+				"Zr", "Zirconium", "#91.224", 4, 5,
+				"Nb", "Niobium", "92.90628", 5, 5,
+				"Mo", "Molybdenum", "#95.96", 6, 5,
+				"Tc", "Technetium", "(98)", 7, 5,
+				"Ru", "Ruthenium", "#101.07", 8, 5,
+				"Rh", "Rhodium", "#102.9055", 9, 5,
+				"Pd", "Palladium", "#106.42", 10, 5,
+				"Ag", "Silver", "#107.8682", 11, 5,
+				"Cd", "Cadmium", "#112.411", 12, 5,
+				"In", "Indium", "#114.818", 13, 5,
+				"Sn", "Tin", "#118.71", 14, 5,
+				"Sb", "Antimony", "#121.76", 15, 5,
+				"Te", "Tellurium", "127.6", 16, 5,
+				"I", "Iodine", "126.90447", 17, 5,
+				"Xe", "Xenon", "#131.293", 18, 5,
+				"Cs", "Caesium", "#132.9054", 1, 6,
+				"Ba", "Barium", "#132.9054", 2, 6,
+				"La", "Lanthanum", "138.90547", 4, 9,
+				"Ce", "Cerium", "#140.116", 5, 9,
+				"Pr", "Praseodymium", "140.90765", 6, 9,
+				"Nd", "Neodymium", "#144.242", 7, 9,
+				"Pm", "Promethium", "(145)", 8, 9,
+				"Sm", "Samarium", "#150.36", 9, 9,
+				"Eu", "Europium", "#151.964", 10, 9,
+				"Gd", "Gadolinium", "#157.25", 11, 9,
+				"Tb", "Terbium", "158.92535", 12, 9,
+				"Dy", "Dysprosium", "162.5", 13, 9,
+				"Ho", "Holmium", "164.93032", 14, 9,
+				"Er", "Erbium", "#167.259", 15, 9,
+				"Tm", "Thulium", "168.93421", 16, 9,
+				"Yb", "Ytterbium", "#173.054", 17, 9,
+				"Lu", "Lutetium", "#174.9668", 18, 9,
+				"Hf", "Hafnium", "#178.49", 4, 6,
+				"Ta", "Tantalum", "180.94788", 5, 6,
+				"W", "Tungsten", "#183.84", 6, 6,
+				"Re", "Rhenium", "#186.207", 7, 6,
+				"Os", "Osmium", "#190.23", 8, 6,
+				"Ir", "Iridium", "#192.217", 9, 6,
+				"Pt", "Platinum", "#195.084", 10, 6,
+				"Au", "Gold", "196.966569", 11, 6,
+				"Hg", "Mercury", "#200.59", 12, 6,
+				"Tl", "Thallium", "#204.3833", 13, 6,
+				"Pb", "Lead", "207.2", 14, 6,
+				"Bi", "Bismuth", "#208.9804", 15, 6,
+				"Po", "Polonium", "(209)", 16, 6,
+				"At", "Astatine", "(210)", 17, 6,
+				"Rn", "Radon", "(222)", 18, 6,
+				"Fr", "Francium", "(223)", 1, 7,
+				"Ra", "Radium", "(226)", 2, 7,
+				"Ac", "Actinium", "(227)", 4, 10,
+				"Th", "Thorium", "232.03806", 5, 10,
+				"Pa", "Protactinium", "#231.0588", 6, 10,
+				"U", "Uranium", "238.02891", 7, 10,
+				"Np", "Neptunium", "(237)", 8, 10,
+				"Pu", "Plutonium", "(244)", 9, 10,
+				"Am", "Americium", "(243)", 10, 10,
+				"Cm", "Curium", "(247)", 11, 10,
+				"Bk", "Berkelium", "(247)", 12, 10,
+				"Cf", "Californium", "(251)", 13, 10,
+				"Es", "Einstenium", "(252)", 14, 10,
+				"Fm", "Fermium", "(257)", 15, 10,
+				"Md", "Mendelevium", "(258)", 16, 10,
+				"No", "Nobelium", "(259)", 17, 10,
+				"Lr", "Lawrencium", "(262)", 18, 10,
+				"Rf", "Rutherfordium", "(267)", 4, 7,
+				"Db", "Dubnium", "(268)", 5, 7,
+				"Sg", "Seaborgium", "(271)", 6, 7,
+				"Bh", "Bohrium", "(272)", 7, 7,
+				"Hs", "Hassium", "(270)", 8, 7,
+				"Mt", "Meitnerium", "(276)", 9, 7,
+				"Ds", "Darmstadium", "(281)", 10, 7,
+				"Rg", "Roentgenium", "(280)", 11, 7,
+				"Cn", "Copernicium", "(285)", 12, 7,
+				"Uut", "Unutrium", "(284)", 13, 7,
+				"Fl", "Flerovium", "(289)", 14, 7,
+				"Uup", "Ununpentium", "(288)", 15, 7,
+				"Lv", "Livermorium", "(293)", 16, 7,
+				"Uus", "Ununseptium", "(294)", 17, 7,
+				"Uuo", "Ununoctium", "(294)", 18, 7
+			];
+
+			var camera, scene, renderer;
+			var controls;
+
+			var objects = [];
+			var targets = {
+				table: [],
+				sphere: [],
+				helix: [],
+				grid: []
+			};
+
+			init();
+			animate();
+
+			function init() {
+
+				camera = new THREE.PerspectiveCamera(40, window.innerWidth / window.innerHeight, 1, 10000);
+				//透视投影相机,PerspectiveCamera(fov, aspect, near, far) 
+				// - fov 可视角度 
+				// - aspect 为width/height,通常设置为canvas元素的高宽比。 
+				// - near近端距离 
+				// - far远端距离 
+				//只有离相机的距离大于near值，小于far值，且在相机的可视角度之内，才能被相机投影到。
+
+				camera.position.z = 3000;
+				//3000是camera的竖直高度,可以理解为值越大可见度越大
+
+				scene = new THREE.Scene();
+
+
+				// table 表格
+				//这里是对table表格里的数据进行解析,然后分配到每个div中构成模块
+				for (var i = 0; i < table.length; i += 5) {
+
+					var element = document.createElement('div');
+					element.className = 'element';
+					element.style.backgroundColor = 'rgba(0,127,127,' + (Math.random() * 0.5 + 0.25) + ')';
+
+					var number = document.createElement('div');
+					number.className = 'number';
+					number.textContent = (i / 5) + 1;
+					element.appendChild(number);
+
+					var symbol = document.createElement('div');
+					symbol.className = 'symbol';
+					symbol.textContent = table[i];
+					element.appendChild(symbol);
+
+					var details = document.createElement('div');
+					details.className = 'details';
+					details.innerHTML = table[i + 1] + '<br>' + table[i + 2];
+					element.appendChild(details);
+
+					var object = new THREE.CSS3DObject(element);
+					object.position.x = Math.random() * 4000 - 2000;
+					object.position.y = Math.random() * 4000 - 2000;
+					object.position.z = Math.random() * 4000 - 2000;
+					scene.add(object);
+
+					objects.push(object);
+
+
+
+					var object = new THREE.Object3D();
+					object.position.x = (table[i + 3] * 140) - 1330;
+					object.position.y = -(table[i + 4] * 180) + 990;
+
+					targets.table.push(object);
+
+				}
+
+				// sphere 球
+
+				var vector = new THREE.Vector3();
+
+				for (var i = 0, l = objects.length; i < l; i++) {
+
+					var phi = Math.acos(-1 + (2 * i) / l);
+					var theta = Math.sqrt(l * Math.PI) * phi;
+
+					var object = new THREE.Object3D();
+
+					object.position.x = 800 * Math.cos(theta) * Math.sin(phi);
+					object.position.y = 800 * Math.sin(theta) * Math.sin(phi);
+					object.position.z = 800 * Math.cos(phi);
+
+					vector.copy(object.position).multiplyScalar(2);
+
+					object.lookAt(vector);
+
+					targets.sphere.push(object);
+
+				}
+
+				// helix 螺旋
+
+				var vector = new THREE.Vector3();
+
+				for (var i = 0, l = objects.length; i < l; i++) {
+
+					var phi = i * 0.175 + Math.PI;
+
+					var object = new THREE.Object3D();
+
+					object.position.x = 900 * Math.sin(phi);
+					object.position.y = -(i * 8) + 450;
+					object.position.z = 900 * Math.cos(phi);
+
+					vector.x = object.position.x * 2;
+					vector.y = object.position.y;
+					vector.z = object.position.z * 2;
+
+					object.lookAt(vector);
+
+					targets.helix.push(object);
+
+				}
+
+				// grid 网格
+
+				for (var i = 0; i < objects.length; i++) {
+
+					var object = new THREE.Object3D();
+
+					object.position.x = ((i % 5) * 400) - 800;
+					object.position.y = (-(Math.floor(i / 5) % 5) * 400) + 800;
+					object.position.z = (Math.floor(i / 25)) * 1000 - 2000;
+
+					targets.grid.push(object);
+
+				}
+
+				//
+
+				renderer = new THREE.CSS3DRenderer();
+				renderer.setSize(window.innerWidth, window.innerHeight);
+				renderer.domElement.style.position = 'absolute';
+				document.getElementById('container').appendChild(renderer.domElement);
+
+				//
+
+				controls = new THREE.TrackballControls(camera, renderer.domElement);
+				controls.rotateSpeed = 0.5; //旋转速度
+				controls.minDistance = 500; //最小距离
+				controls.maxDistance = 10000; //最大距离
+				controls.addEventListener('change', render);
+
+				var button = document.getElementById('table');
+				button.addEventListener('click', function(event) {
+
+					transform(targets.table, 2000); //展示表格
+
+				}, false);
+
+				var button = document.getElementById('sphere');
+				button.addEventListener('click', function(event) {
+
+					transform(targets.sphere, 2000); //展示球
+
+				}, false);
+
+				var button = document.getElementById('helix');
+				button.addEventListener('click', function(event) {
+
+					transform(targets.helix, 2000); //展示螺旋
+
+				}, false);
+
+				var button = document.getElementById('grid');
+				button.addEventListener('click', function(event) {
+
+					transform(targets.grid, 2000); //展示网格
+
+				}, false);
+
+				transform(targets.table, 5000);
+
+				//
+
+				window.addEventListener('resize', onWindowResize, false);
+
+			}
+
+
+			function transform(targets, duration) {
+				//targets对象,duration持续时间
+
+				TWEEN.removeAll();
+
+				for (var i = 0; i < objects.length; i++) {
+
+					var object = objects[i];
+					var target = targets[i];
+
+					new TWEEN.Tween(object.position)
+						.to({
+							x: target.position.x,
+							y: target.position.y,
+							z: target.position.z
+						}, Math.random() * duration + duration)
+						.easing(TWEEN.Easing.Exponential.InOut)
+						.start();
+
+					new TWEEN.Tween(object.rotation)
+						.to({
+							x: target.rotation.x,
+							y: target.rotation.y,
+							z: target.rotation.z
+						}, Math.random() * duration + duration)
+						.easing(TWEEN.Easing.Exponential.InOut)
+						.start();
+
+				}
+
+				new TWEEN.Tween(this)
+					.to({}, duration * 2)
+					.onUpdate(render)
+					.start();
+
+			}
+
+			function onWindowResize() {
+
+				camera.aspect = window.innerWidth / window.innerHeight;
+				camera.updateProjectionMatrix();
+
+				renderer.setSize(window.innerWidth, window.innerHeight);
+
+				render();
+
+			}
+
+			function animate() {
+
+				requestAnimationFrame(animate);
+
+				TWEEN.update();
+
+				controls.update();
+
+			}
+
+			function render() {
+
+				renderer.render(scene, camera);
+
+			}
+		</script>
+	</body>
 </html>
+
